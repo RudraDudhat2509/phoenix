@@ -66,6 +66,8 @@ function getContextCategoryIcon(category: string | undefined): ReactNode {
       return <Icon svg={<Icons.PlayCircleOutline />} />;
     case "code_evaluator":
       return <Icon svg={<Icons.EditOutline />} />;
+    case "annotation_config":
+      return <Icon svg={<Icons.PriceTagsOutline />} />;
     default:
       return <Icon svg={<Icons.InfoOutline />} />;
   }

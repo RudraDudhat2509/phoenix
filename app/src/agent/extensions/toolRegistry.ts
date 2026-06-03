@@ -11,6 +11,7 @@ import { bashAgentTool } from "@phoenix/agent/tools/bash";
  * To add, edit, or remove a tool, see
  * `.agents/skills/phoenix-pxi/resources/extending-tool-registry.md`.
  */
+import { openAnnotationConfigFormAgentTool } from "@phoenix/agent/tools/annotationConfigDraft";
 import { batchSpanAnnotateAgentTool } from "@phoenix/agent/tools/batchSpanAnnotate";
 import {
   editCodeEvaluatorDraftAgentTool,
@@ -86,6 +87,7 @@ const clientActionTools: AgentToolDefinition[] = [
   setVariableValuesAgentTool,
   setTemplateVariablesPathAgentTool,
   setAppendedMessagesPathAgentTool,
+  openAnnotationConfigFormAgentTool,
   openCodeEvaluatorFormAgentTool,
   readCodeEvaluatorDraftAgentTool,
   editCodeEvaluatorDraftAgentTool,

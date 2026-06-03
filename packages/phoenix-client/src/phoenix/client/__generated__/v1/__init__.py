@@ -15,6 +15,11 @@ class AgentSpanContext(TypedDict):
     otelSpanId: NotRequired[str]
 
 
+class AnnotationConfigContext(TypedDict):
+    type: Literal["annotation_config"]
+    annotationConfigNodeId: NotRequired[str]
+
+
 class AnnotationResult(TypedDict):
     label: NotRequired[str]
     score: NotRequired[float]
@@ -275,6 +280,11 @@ class ListExperimentRunsResponseBody(TypedDict):
 class ListExperimentsResponseBody(TypedDict):
     data: Sequence[Experiment]
     next_cursor: Optional[str]
+
+
+class LlmEvaluatorContext(TypedDict):
+    type: Literal["llm_evaluator"]
+    evaluatorNodeId: NotRequired[str]
 
 
 class LocalUserData(TypedDict):
@@ -1508,6 +1518,8 @@ class ChatRegenerateMessage(TypedDict):
                 AgentSpanContext,
                 PlaygroundContext,
                 CodeEvaluatorContext,
+                LlmEvaluatorContext,
+                AnnotationConfigContext,
                 DatasetContext,
                 GraphQLContext,
                 WebAccessContext,
@@ -1533,6 +1545,8 @@ class ChatSubmitMessage(TypedDict):
                 AgentSpanContext,
                 PlaygroundContext,
                 CodeEvaluatorContext,
+                LlmEvaluatorContext,
+                AnnotationConfigContext,
                 DatasetContext,
                 GraphQLContext,
                 WebAccessContext,

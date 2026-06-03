@@ -1447,6 +1447,22 @@ export interface components {
             /** Data */
             data: components["schemas"]["InsertedTraceAnnotation"][];
         };
+        /**
+         * AnnotationConfigContext
+         * @description Annotation-config create/edit form mounted in the current browser route.
+         *
+         *     ``annotation_config_node_id`` is ``None`` when the form is creating a new
+         *     config and carries the config's relay node id when editing an existing one.
+         */
+        AnnotationConfigContext: {
+            /**
+             * @description discriminator enum property added by openapi-typescript
+             * @enum {string}
+             */
+            type: "annotation_config";
+            /** Annotationconfignodeid */
+            annotationConfigNodeId?: string | null;
+        };
         /** AnnotationResult */
         AnnotationResult: {
             /**
@@ -1610,7 +1626,7 @@ export interface components {
          * ChatContext
          * @description Discriminated union of every UI-state context the agent understands.
          */
-        ChatContext: components["schemas"]["AppContext"] | components["schemas"]["ProjectContext"] | components["schemas"]["TraceContext"] | components["schemas"]["AgentSpanContext"] | components["schemas"]["PlaygroundContext"] | components["schemas"]["CodeEvaluatorContext"] | components["schemas"]["LlmEvaluatorContext"] | components["schemas"]["DatasetContext"] | components["schemas"]["GraphQLContext"] | components["schemas"]["WebAccessContext"];
+        ChatContext: components["schemas"]["AppContext"] | components["schemas"]["ProjectContext"] | components["schemas"]["TraceContext"] | components["schemas"]["AgentSpanContext"] | components["schemas"]["PlaygroundContext"] | components["schemas"]["CodeEvaluatorContext"] | components["schemas"]["LlmEvaluatorContext"] | components["schemas"]["AnnotationConfigContext"] | components["schemas"]["DatasetContext"] | components["schemas"]["GraphQLContext"] | components["schemas"]["WebAccessContext"];
         /**
          * ChatRegenerateMessage
          * @description Regenerate message extended with Phoenix-specific fields.

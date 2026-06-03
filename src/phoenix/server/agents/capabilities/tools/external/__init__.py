@@ -21,6 +21,7 @@ from phoenix.server.agents.capabilities.tools.external import (
     get_route_info,
     list_playground_model_targets,
     load_dataset,
+    open_annotation_config_form,
     open_code_evaluator_form,
     open_llm_evaluator_form,
     read_code_evaluator_draft,
@@ -73,6 +74,9 @@ from phoenix.server.agents.capabilities.tools.external.list_playground_model_tar
 )
 from phoenix.server.agents.capabilities.tools.external.load_dataset import (
     LoadDatasetCapability,
+)
+from phoenix.server.agents.capabilities.tools.external.open_annotation_config_form import (
+    OpenAnnotationConfigFormCapability,
 )
 from phoenix.server.agents.capabilities.tools.external.open_code_evaluator_form import (
     OpenCodeEvaluatorFormCapability,
@@ -149,6 +153,7 @@ _EXTERNAL_TOOL_DEFINITIONS_BY_NAME: dict[str, ToolDefinition] = {
         edit_prompt_instance.TOOL_DEFINITION,
         get_route_info.TOOL_DEFINITION,
         load_dataset.TOOL_DEFINITION,
+        open_annotation_config_form.TOOL_DEFINITION,
         open_code_evaluator_form.TOOL_DEFINITION,
         open_llm_evaluator_form.TOOL_DEFINITION,
         read_code_evaluator_draft.TOOL_DEFINITION,
@@ -216,6 +221,7 @@ def get_external_tool_capability_function(
         SetTemplateVariablesPathCapability(instructions=prompts.set_template_variables_path_tool),
         SetAppendedMessagesPathCapability(instructions=prompts.set_appended_messages_path_tool),
         LoadDatasetCapability(instructions=prompts.load_dataset_tool),
+        OpenAnnotationConfigFormCapability(instructions=prompts.open_annotation_config_form_tool),
         OpenCodeEvaluatorFormCapability(instructions=prompts.open_code_evaluator_form_tool),
         OpenLlmEvaluatorFormCapability(instructions=prompts.open_llm_evaluator_form_tool),
         ReadCodeEvaluatorDraftCapability(instructions=prompts.read_code_evaluator_draft_tool),
@@ -246,6 +252,7 @@ __all__ = [
     "GetRouteInfoCapability",
     "ListPlaygroundModelTargetsCapability",
     "LoadDatasetCapability",
+    "OpenAnnotationConfigFormCapability",
     "OpenCodeEvaluatorFormCapability",
     "OpenLlmEvaluatorFormCapability",
     "ReadCodeEvaluatorDraftCapability",
