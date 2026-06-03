@@ -114,6 +114,54 @@ const projectRecentSessionsQuery = graphql`
   }
 `;
 
+const projectAnnotationConfigsQuery = graphql`
+  query projectPageContextAnnotationConfigsQuery($id: ID!) {
+    node(id: $id) {
+      __typename
+      ... on Project {
+        id
+        name
+        annotationConfigs {
+          edges {
+            annotationConfig: node {
+              ... on CategoricalAnnotationConfig {
+                id
+                name
+                description
+                annotationType
+                optimizationDirection
+                values {
+                  label
+                  score
+                }
+              }
+              ... on ContinuousAnnotationConfig {
+                id
+                name
+                description
+                annotationType
+                optimizationDirection
+                lowerBound
+                upperBound
+              }
+              ... on FreeformAnnotationConfig {
+                id
+                name
+                description
+                annotationType
+                optimizationDirection
+                threshold
+                lowerBound
+                upperBound
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
+
 export function buildProjectStarterFiles(
   projectId: string
 ): GeneratedContextFile[] {
@@ -158,6 +206,11 @@ export function buildProjectRecipeFiles(
       path: `${PHOENIX_ROOT}/graphql/recipes/project-recent-sessions.graphql`,
       request: projectRecentSessionsQuery,
       requestName: "projectPageContextRecentSessionsQuery",
+    }),
+    createGraphqlContextFile({
+      path: `${PHOENIX_ROOT}/graphql/recipes/project-annotation-configs.graphql`,
+      request: projectAnnotationConfigsQuery,
+      requestName: "projectPageContextAnnotationConfigsQuery",
     }),
     createJsonContextFile({
       path: `${PHOENIX_ROOT}/graphql/recipes/project-recipes.variables.json`,

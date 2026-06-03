@@ -15,6 +15,7 @@ from phoenix.server.agents.capabilities.tools.external import (
     batch_span_annotate,
     cancel_playground_run,
     clone_prompt_instance,
+    edit_annotation_config_draft,
     edit_code_evaluator_draft,
     edit_llm_evaluator_draft,
     edit_prompt_instance,
@@ -24,6 +25,7 @@ from phoenix.server.agents.capabilities.tools.external import (
     open_annotation_config_form,
     open_code_evaluator_form,
     open_llm_evaluator_form,
+    read_annotation_config_draft,
     read_code_evaluator_draft,
     read_llm_evaluator_draft,
     read_playground_output,
@@ -57,6 +59,9 @@ from phoenix.server.agents.capabilities.tools.external.cancel_playground_run imp
 from phoenix.server.agents.capabilities.tools.external.clone_prompt_instance import (
     ClonePromptInstanceCapability,
 )
+from phoenix.server.agents.capabilities.tools.external.edit_annotation_config_draft import (
+    EditAnnotationConfigDraftCapability,
+)
 from phoenix.server.agents.capabilities.tools.external.edit_code_evaluator_draft import (
     EditCodeEvaluatorDraftCapability,
 )
@@ -83,6 +88,9 @@ from phoenix.server.agents.capabilities.tools.external.open_code_evaluator_form 
 )
 from phoenix.server.agents.capabilities.tools.external.open_llm_evaluator_form import (
     OpenLlmEvaluatorFormCapability,
+)
+from phoenix.server.agents.capabilities.tools.external.read_annotation_config_draft import (
+    ReadAnnotationConfigDraftCapability,
 )
 from phoenix.server.agents.capabilities.tools.external.read_code_evaluator_draft import (
     ReadCodeEvaluatorDraftCapability,
@@ -148,6 +156,7 @@ _EXTERNAL_TOOL_DEFINITIONS_BY_NAME: dict[str, ToolDefinition] = {
         bash.TOOL_DEFINITION,
         cancel_playground_run.TOOL_DEFINITION,
         clone_prompt_instance.TOOL_DEFINITION,
+        edit_annotation_config_draft.TOOL_DEFINITION,
         edit_code_evaluator_draft.TOOL_DEFINITION,
         edit_llm_evaluator_draft.TOOL_DEFINITION,
         edit_prompt_instance.TOOL_DEFINITION,
@@ -156,6 +165,7 @@ _EXTERNAL_TOOL_DEFINITIONS_BY_NAME: dict[str, ToolDefinition] = {
         open_annotation_config_form.TOOL_DEFINITION,
         open_code_evaluator_form.TOOL_DEFINITION,
         open_llm_evaluator_form.TOOL_DEFINITION,
+        read_annotation_config_draft.TOOL_DEFINITION,
         read_code_evaluator_draft.TOOL_DEFINITION,
         read_llm_evaluator_draft.TOOL_DEFINITION,
         read_prompt_instance.TOOL_DEFINITION,
@@ -222,6 +232,8 @@ def get_external_tool_capability_function(
         SetAppendedMessagesPathCapability(instructions=prompts.set_appended_messages_path_tool),
         LoadDatasetCapability(instructions=prompts.load_dataset_tool),
         OpenAnnotationConfigFormCapability(instructions=prompts.open_annotation_config_form_tool),
+        ReadAnnotationConfigDraftCapability(instructions=prompts.read_annotation_config_draft_tool),
+        EditAnnotationConfigDraftCapability(instructions=prompts.edit_annotation_config_draft_tool),
         OpenCodeEvaluatorFormCapability(instructions=prompts.open_code_evaluator_form_tool),
         OpenLlmEvaluatorFormCapability(instructions=prompts.open_llm_evaluator_form_tool),
         ReadCodeEvaluatorDraftCapability(instructions=prompts.read_code_evaluator_draft_tool),
@@ -246,6 +258,7 @@ __all__ = [
     "BashCapability",
     "CancelPlaygroundRunCapability",
     "ClonePromptInstanceCapability",
+    "EditAnnotationConfigDraftCapability",
     "EditCodeEvaluatorDraftCapability",
     "EditLlmEvaluatorDraftCapability",
     "EditPromptInstanceCapability",
@@ -255,6 +268,7 @@ __all__ = [
     "OpenAnnotationConfigFormCapability",
     "OpenCodeEvaluatorFormCapability",
     "OpenLlmEvaluatorFormCapability",
+    "ReadAnnotationConfigDraftCapability",
     "ReadCodeEvaluatorDraftCapability",
     "ReadLlmEvaluatorDraftCapability",
     "ReadPromptInstanceCapability",
