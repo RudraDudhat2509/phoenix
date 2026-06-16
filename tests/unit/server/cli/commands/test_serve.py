@@ -90,11 +90,19 @@ def postgresql_primary_and_replica_urls(
         janitor.drop()
 
 
-@pytest.mark.parametrize("dialect", ["postgresql"], indirect=True)
+@pytest.fixture
+def postgresql_primary_and_replica_urls_if_enabled(
+    request: pytest.FixtureRequest,
+) -> PostgresPrimaryAndReplicaUrls:
+    if request.config.getoption("--db") == "sqlite":
+        pytest.skip("Postgres primary/replica routing requires PostgreSQL")
+    return request.getfixturevalue("postgresql_primary_and_replica_urls")
+
+
 async def test_create_db_session_factory_routes_reads_to_replica_for_postgres(
-    dialect: str,
-    postgresql_primary_and_replica_urls: PostgresPrimaryAndReplicaUrls,
+    postgresql_primary_and_replica_urls_if_enabled: PostgresPrimaryAndReplicaUrls,
 ) -> None:
+    postgresql_primary_and_replica_urls = postgresql_primary_and_replica_urls_if_enabled
     factory, shutdown_callbacks = _create_db_session_factory(
         db_connection_str=postgresql_primary_and_replica_urls.primary_url,
         read_replica_connection_str=postgresql_primary_and_replica_urls.replica_url,
@@ -117,11 +125,10 @@ async def test_create_db_session_factory_routes_reads_to_replica_for_postgres(
         await _run_shutdown_callbacks(shutdown_callbacks)
 
 
-@pytest.mark.parametrize("dialect", ["postgresql"], indirect=True)
 async def test_create_db_session_factory_uses_primary_when_replica_not_configured_for_postgres(
-    dialect: str,
-    postgresql_primary_and_replica_urls: PostgresPrimaryAndReplicaUrls,
+    postgresql_primary_and_replica_urls_if_enabled: PostgresPrimaryAndReplicaUrls,
 ) -> None:
+    postgresql_primary_and_replica_urls = postgresql_primary_and_replica_urls_if_enabled
     factory, shutdown_callbacks = _create_db_session_factory(
         db_connection_str=postgresql_primary_and_replica_urls.primary_url,
         read_replica_connection_str=None,
