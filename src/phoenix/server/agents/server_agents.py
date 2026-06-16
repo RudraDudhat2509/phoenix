@@ -56,8 +56,9 @@ def build_server_agent(
         BashCapability(
             schema=schema,
             build_graphql_context=build_graphql_context,
-            instructions=resolved_prompts.bash_tool.render(),
+            instructions=resolved_prompts.bash_tool.render(enable_web_access=enable_web_access),
             allow_mutations=allow_mutations,
+            enable_web_access=enable_web_access,
         ),
     ]
     if docs_mcp_server is not None:
