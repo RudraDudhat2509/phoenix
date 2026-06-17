@@ -1,5 +1,14 @@
 # Changelog
 
+## [3.1.1](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-evals-v3.1.0...arize-phoenix-evals-v3.1.1) (2026-06-17)
+
+
+### Bug Fixes
+
+* **deps:** bump litellm floor to 1.83.14 to fix multiple CVEs ([#13020](https://github.com/Arize-ai/phoenix/issues/13020)) ([ccf1880](https://github.com/Arize-ai/phoenix/commit/ccf1880cffba887688328801247f524823869dff))
+* **evals:** avoid templating warning on import ([#12881](https://github.com/Arize-ai/phoenix/issues/12881)) ([e899b36](https://github.com/Arize-ai/phoenix/commit/e899b36cf6d4f3581fdc41df80f1342453f2940f))
+* **evals:** compute macro/weighted F-score per class to match sklearn semantics ([#13740](https://github.com/Arize-ai/phoenix/issues/13740)) ([c0f6267](https://github.com/Arize-ai/phoenix/commit/c0f6267f24e14d4e22e237be146fd05e0310f8f1))
+
 ## [3.1.0](https://github.com/Arize-ai/phoenix/compare/arize-phoenix-evals-v3.0.0...arize-phoenix-evals-v3.1.0) (2026-05-04)
 
 
